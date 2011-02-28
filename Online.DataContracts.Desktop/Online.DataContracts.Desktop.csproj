@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D1AB8C70-5CC8-46BC-960A-D75064C40B34}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SimonSquared.Online.DataContracts</RootNamespace>
+    <AssemblyName>Online.DataContracts</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="protobuf-net">
+      <HintPath>..\lib\Desktop\protobuf-net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Online.DataContracts\BeginGameUpdate.cs">
+      <Link>BeginGameUpdate.cs</Link>
+    </Compile>
+    <Compile Include="..\Online.DataContracts\BeginningPuzzleStateDto.cs">
+      <Link>BeginningPuzzleStateDto.cs</Link>
+    </Compile>
+    <Compile Include="..\Online.DataContracts\Deformation.cs">
+      <Link>Deformation.cs</Link>
+    </Compile>
+    <Compile Include="..\Online.DataContracts\GameDto.cs">
+      <Link>GameDto.cs</Link>
+    </Compile>
+    <Compile Include="..\Online.DataContracts\GameStatusDto.cs">
+      <Link>GameStatusDto.cs</Link>
+    </Compile>
+    <Compile Include="..\Online.DataContracts\GameStatusUpdate.cs">
+      <Link>GameStatusUpdate.cs</Link>
+    </Compile>
+    <Compile Include="..\Online.DataContracts\LevelTemplate.cs">
+      <Link>LevelTemplate.cs</Link>
+    </Compile>
+    <Compile Include="..\Online.DataContracts\PlayerDto.cs">
+      <Link>PlayerDto.cs</Link>
+    </Compile>
+    <Compile Include="..\Online.DataContracts\PlayingRoundStateDto.cs">
+      <Link>PlayingRoundStateDto.cs</Link>
+    </Compile>
+    <Compile Include="..\Online.DataContracts\PuzzleCompletedUpdate.cs">
+      <Link>PuzzleCompletedUpdate.cs</Link>
+    </Compile>
+    <Compile Include="..\Online.DataContracts\PuzzleDto.cs">
+      <Link>PuzzleDto.cs</Link>
+    </Compile>
+    <Compile Include="..\Online.DataContracts\RequestMessage.cs">
+      <Link>RequestMessage.cs</Link>
+    </Compile>
+    <Compile Include="..\Online.DataContracts\ResponseMessage.cs">
+      <Link>ResponseMessage.cs</Link>
+    </Compile>
+    <Compile Include="..\Online.DataContracts\Round.cs">
+      <Link>Round.cs</Link>
+    </Compile>
+    <Compile Include="..\Online.DataContracts\RoundCompletedStateDto.cs">
+      <Link>RoundCompletedStateDto.cs</Link>
+    </Compile>
+    <Compile Include="..\Online.DataContracts\RoundStartingStateDto.cs">
+      <Link>RoundStartingStateDto.cs</Link>
+    </Compile>
+    <Compile Include="..\Online.DataContracts\ScoreboardDto.cs">
+      <Link>ScoreboardDto.cs</Link>
+    </Compile>
+    <Compile Include="..\Online.DataContracts\ScoreDto.cs">
+      <Link>ScoreDto.cs</Link>
+    </Compile>
+    <Compile Include="..\Online.DataContracts\ShapeData.cs">
+      <Link>ShapeData.cs</Link>
+    </Compile>
+    <Compile Include="..\Online.DataContracts\ShapeTransformation.cs">
+      <Link>ShapeTransformation.cs</Link>
+    </Compile>
+    <Compile Include="..\Online.DataContracts\SolvingPuzzleStateDto.cs">
+      <Link>SolvingPuzzleStateDto.cs</Link>
+    </Compile>
+    <Compile Include="..\Online.DataContracts\StartGameRequest.cs">
+      <Link>StartGameRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\Online.DataContracts\TimeCheck.cs">
+      <Link>TimeCheck.cs</Link>
+    </Compile>
+    <Compile Include="..\Online.DataContracts\WaitingForPlayersStateDto.cs">
+      <Link>WaitingForPlayersStateDto.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

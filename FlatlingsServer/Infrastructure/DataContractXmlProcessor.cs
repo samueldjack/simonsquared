@@ -1,0 +1,59 @@
+﻿#region License
+// This file is part of Simon Squared
+// 
+// Simon Squared is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 2 of the License, or
+// (at your option) any later version.
+// 
+// Simon Squared is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+// 
+//  You should have received a copy of the GNU General Public License
+// along with Simon Squared. If not, see <http://www.gnu.org/licenses/>.
+#endregion
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
+using System.Runtime.Serialization;
+using System.ServiceModel;
+using System.ServiceModel.Description;
+using System.Web;
+using System.Xml.Serialization;
+using Microsoft.ServiceModel.Http;
+
+namespace FlatlingsServer.Infrastructure
+{
+    public class DataContractXmlProcessor : MediaTypeProcessor
+    {
+        private readonly HttpOperationDescription _operation;
+
+        public DataContractXmlProcessor(HttpOperationDescription operation, MediaTypeProcessorMode mode)
+            : base(operation, mode)
+        {
+            _operation = operation;
+        }
+
+        public override IEnumerable<string> SupportedMediaTypes
+        {
+            get
+            {
+                return new List<string> { "text/xml", "application/xml" };
+            }
+        }
+
+        public override void WriteToStream(object instance, System.IO.Stream stream, HttpRequestMessage request)
+        {
+                var serializer = new DataContractSerializer(Parameter.ParameterType, _operation.KnownTypes);
+                serializer.WriteObject(stream, instance);
+        }
+
+        public override object ReadFromStream(System.IO.Stream stream, HttpRequestMessage request)
+        {
+            var serializer = new DataContractSerializer(Parameter.ParameterType, _operation.KnownTypes);
+            return serializer.ReadObject(stream);
+        }
+    }
+}

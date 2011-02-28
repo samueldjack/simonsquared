@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{8F5911E3-7C48-49F8-8A04-411AF288094A}</ProjectGuid>
+    <ProjectTypeGuids>{6D335F3A-9D43-41b4-9D22-F6F17C4BE596};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">Windows Phone</Platform>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Flatlings</RootNamespace>
+    <AssemblyName>SimonSquared</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <XnaFrameworkVersion>v4.0</XnaFrameworkVersion>
+    <XnaPlatform>Windows Phone</XnaPlatform>
+    <XnaProfile>Reach</XnaProfile>
+    <XnaCrossPlatformGroupID>8493338b-6e71-4f75-977e-d7904193697b</XnaCrossPlatformGroupID>
+    <XnaOutputType>Game</XnaOutputType>
+    <XapFilename>$(AssemblyName).xap</XapFilename>
+    <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
+    <XnaWindowsPhoneManifestTemplate>Properties\WMAppManifest.xml</XnaWindowsPhoneManifestTemplate>
+    <TileImage>TileImage.png</TileImage>
+    <TileTitle>Simon Squared</TileTitle>
+    <SupportedCultures>
+    </SupportedCultures>
+    <ApplicationIcon>Game.ico</ApplicationIcon>
+    <Thumbnail>GameThumbnail.png</Thumbnail>
+    <GameStartupType>Flatlings.FlatlingsGame</GameStartupType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|Windows Phone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Windows Phone\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;WINDOWS_PHONE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoStdLib>true</NoStdLib>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <XnaCompressContent>false</XnaCompressContent>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|Windows Phone' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Windows Phone\Release</OutputPath>
+    <DefineConstants>TRACE;WINDOWS_PHONE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoStdLib>true</NoStdLib>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <XnaCompressContent>false</XnaCompressContent>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Devices.Sensors, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Phone.Reactive, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Xna.Framework">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.Xna.Framework.Game">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.Xna.Framework.Graphics">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.Xna.Framework.GamerServices">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.Xna.Framework.Input.Touch">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="mscorlib">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json.Silverlight">
+      <HintPath>..\..\lib\Wp7\Newtonsoft.Json.Silverlight.dll</HintPath>
+    </Reference>
+    <Reference Include="protobuf-net">
+      <HintPath>..\..\lib\Wp7\protobuf-net.dll</HintPath>
+    </Reference>
+    <Reference Include="RedBadger.Xpf.Phone">
+      <HintPath>..\..\lib\Wp7\RedBadger.Xpf.Phone.dll</HintPath>
+    </Reference>
+    <Reference Include="RedBadger.Xpf.Phone.Adapters.Xna">
+      <HintPath>..\..\lib\Wp7\RedBadger.Xpf.Phone.Adapters.Xna.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp.WindowsPhone">
+      <HintPath>..\..\lib\Wp7\RestSharp.WindowsPhone.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Observable, Version=2.0.5.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
+    <Reference Include="System.Runtime.Serialization, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Core">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Net">
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Animations\AnimationBuilder.cs" />
+    <Compile Include="Animations\AnimationFactory.cs" />
+    <Compile Include="Animations\Int32Animation.cs" />
+    <Compile Include="Animations\SetterInvokingAnimation.cs" />
+    <Compile Include="Animations\Animation.cs" />
+    <Compile Include="Animations\BooleanAnimation.cs" />
+    <Compile Include="Animations\FloatAnimation.cs" />
+    <Compile Include="Animations\SetterInvokingAnimationBuilder.cs" />
+    <Compile Include="Animations\Storyboard.cs" />
+    <Compile Include="Animations\StoryboardPlanner.cs" />
+    <Compile Include="Animations\Vector2Animation.cs" />
+    <Compile Include="BoundingSphereExtensions.cs" />
+    <Compile Include="CommonContentManager.cs" />
+    <Compile Include="GameStateService.cs" />
+    <Compile Include="InputManager.cs" />
+    <Compile Include="ScoreboardScreen.cs" />
+    <Compile Include="DialogScreen.cs" />
+    <Compile Include="Dispatcher.cs" />
+    <Compile Include="DispatcherScheduler.cs" />
+    <Compile Include="EnumerableExtensions.cs" />
+    <Compile Include="FloatExtensions.cs" />
+    <Compile Include="GameController.cs" />
+    <Compile Include="GameScreen.cs" />
+    <Compile Include="GameServerClient.cs" />
+    <Compile Include="GameStartingScreen.cs" />
+    <Compile Include="HelpScreen.cs" />
+    <Compile Include="HitTestContext.cs" />
+    <Compile Include="IListExtensions.cs" />
+    <Compile Include="IObservableExtensions.cs" />
+    <Compile Include="IScreenOrchestrator.cs" />
+    <Compile Include="JoinMultiplayerGameScreen.cs" />
+    <Compile Include="MainMenuScreen.cs" />
+    <Compile Include="Messages\TransitionToScreenMessage.cs" />
+    <Compile Include="MultiplayerGame.cs" />
+    <Compile Include="MultiPlayerGameController.cs" />
+    <Compile Include="MultiplayerGameManager.cs" />
+    <Compile Include="MvvmLight\Helpers\IExecuteWithObject.cs" />
+    <Compile Include="MvvmLight\Helpers\WeakAction.cs" />
+    <Compile Include="MvvmLight\Helpers\WeakActionGeneric.cs" />
+    <Compile Include="MvvmLight\Messaging\GenericMessage.cs" />
+    <Compile Include="MvvmLight\Messaging\IMessenger.cs" />
+    <Compile Include="MvvmLight\Messaging\MessageBase.cs" />
+    <Compile Include="MvvmLight\Messaging\Messenger.cs" />
+    <Compile Include="MvvmLight\Messaging\NotificationMessage.cs" />
+    <Compile Include="MvvmLight\Messaging\NotificationMessageAction.cs" />
+    <Compile Include="MvvmLight\Messaging\NotificationMessageActionGeneric.cs" />
+    <Compile Include="MvvmLight\Messaging\NotificationMessageGeneric.cs" />
+    <Compile Include="MvvmLight\Messaging\NotificationMessageWithCallback.cs" />
+    <Compile Include="MvvmLight\Messaging\PropertyChangedMessage.cs" />
+    <Compile Include="MvvmLight\Messaging\PropertyChangedMessageBase.cs" />
+    <Compile Include="Palette.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Puzzle.cs" />
+    <Compile Include="RayExtensions.cs" />
+    <Compile Include="Reactive\ObservableGestureExtensions.cs" />
+    <Compile Include="ResourceCleaner.cs" />
+    <Compile Include="RestRequestExtensions.cs" />
+    <Compile Include="Screen.cs" />
+    <Compile Include="Shape.cs" />
+    <Compile Include="SimpleButton.cs" />
+    <Compile Include="SinglePlayerGameController.cs" />
+    <Compile Include="StartingMultiplayerGameMessage.cs" />
+    <Compile Include="StartMultiplayerGameScreen.cs" />
+    <Compile Include="Tile.cs" />
+    <Compile Include="UI\FontManager.cs" />
+    <Compile Include="UI\Fonts.cs" />
+    <Compile Include="UI\GridExtensions.cs" />
+    <Compile Include="UI\ListBoxItem.cs" />
+    <Compile Include="UI\TestScreen.cs" />
+    <Compile Include="UI\TextBox.cs" />
+    <Compile Include="UI\ViewModel.cs" />
+    <Compile Include="Vector2Extensions.cs" />
+    <Compile Include="WaitingForPlayersScreen.cs" />
+    <None Include="Properties\AppManifest.xml">
+      <XnaPlatformSpecific>true</XnaPlatformSpecific>
+    </None>
+    <None Include="Properties\WMAppManifest.xml">
+      <XnaPlatformSpecific>true</XnaPlatformSpecific>
+    </None>
+    <Compile Include="Program.cs" />
+    <Compile Include="FlatlingsGame.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Game.ico" />
+    <Content Include="GameThumbnail.png" />
+    <Content Include="Background.png">
+      <XnaPlatformSpecific>true</XnaPlatformSpecific>
+    </Content>
+    <Content Include="TileImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Online.DataContracts\Online.DataContracts.WP7.csproj">
+      <Project>{883CB3C6-040F-4AD3-9B92-08BBE7A158CD}</Project>
+      <Name>Online.DataContracts.WP7</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FlatlingsContent\FlatlingsContent.contentproj">
+      <Name>FlatlingsContent %28Content%29</Name>
+      <XnaReferenceType>Content</XnaReferenceType>
+      <Project>{2DCEEBB2-8B02-40E2-A0AE-18EA9CAA005D}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
+  <!--
+      To modify your build process, add your task inside one of the targets below and uncomment it. 
+      Other similar extension points exist, see Microsoft.Common.targets.
+      <Target Name="BeforeBuild">
+      </Target>
+      <Target Name="AfterBuild">
+      </Target>
+    -->
+</Project>
