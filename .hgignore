@@ -45,3 +45,8 @@ relre:[.]Debug.cachefile$
 relre:[.]wings~$
 glob:Flatlings/FlatlingsContent/cachefile-{2DCEEBB2-8B02-40E2-A0AE-18EA9CAA005D}-targetpath.txt
 relre:/bin/
+syntax: glob
+lib/Wp7/RedBadger.Xpf.Phone.Adapters.Xna.dll
+lib/Wp7/RedBadger.Xpf.Phone.dll
+lib/Wp7/RedBadger.Xpf.Phone.xml
+lib/Wp7/RedBadger.Xpf.Phone.Adapters.Xna.xml
