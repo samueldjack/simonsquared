@@ -78,15 +78,12 @@ namespace Flatlings
 
         private void StartListeningToGameState()
         {
-            var gameStatusStream = (from interval in Observable.Interval(TimeSpan.FromSeconds(1))
+            _statusSubscription = (from interval in Observable.Interval(TimeSpan.FromSeconds(1))
                                     from gameStatus in GameServerClient.GetGameStatus(_gameId)
                                     select gameStatus)
                                     .Where(status => status != null)
                                     .DistinctUntilChanged(status => status.Id)
-                                    .Publish();
-
-            _statusSubscription = gameStatusStream.Subscribe(PassStatusToStateHandler);
-            gameStatusStream.Connect();
+                                    .Subscribe(PassStatusToStateHandler);
         }
 
         private void PassStatusToStateHandler(GameStatusDto status)
@@ -111,6 +108,8 @@ namespace Flatlings
             {
                 _statusSubscription.Dispose();
             }
+
+            TransitionToState(typeof(AbandonedGame));
         }
 
         private void TransitionToState(Type stateHandlerType)
@@ -383,6 +382,13 @@ namespace Flatlings
             private void UpdateScoreboard(ScoreboardDto scoreboard)
             {
                Parent._scoreboard.OnNext(scoreboard);
+            }
+        }
+
+        private class AbandonedGame : StateHandler
+        {
+            public AbandonedGame(MultiplayerGame parent) : base(parent)
+            {
             }
         }
     }

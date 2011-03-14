@@ -51,6 +51,10 @@ namespace Flatlings
             base.End();
 
             IsPlaying = false;
+            if (_game != null)
+            {
+                _game.LeaveGame();
+            }
         }
 
         public override int Score
