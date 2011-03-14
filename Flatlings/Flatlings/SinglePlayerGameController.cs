@@ -25,7 +25,7 @@ namespace Flatlings
 {
     class SinglePlayerGameController : GameController
     {
-        private int _currentLevelNumber= 35;
+        private int _currentLevelNumber= 1;
         private double _hardness;
         private decimal _numberOfNailedPuzzlesInARow;
         private decimal _score;

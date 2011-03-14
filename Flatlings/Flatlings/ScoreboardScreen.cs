@@ -17,6 +17,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Flatlings.Messages;
 using Flatlings.UI;
 using Microsoft.Phone.Reactive;
 using Microsoft.Xna.Framework;
@@ -145,7 +146,7 @@ namespace Flatlings
 
             subscription = gameManager.CurrentGame.GameStateObservable
                 .Where(state => state == MultiplayerGameState.BeginningRound)
-                .Subscribe(state => Messenger.Send(new StartingMultiplayerGameMessage()));
+                .Subscribe(state => Messenger.Send(new TransitionToScreenMessage() { ScreenName = "Game"}));
 
             _resourceCleaner.AddResourceRequiringCleanup(subscription);
         }
