@@ -312,7 +312,7 @@ namespace Flatlings
 
         private void ProcessDrag(IList<Vector2> dragPoints)
         {
-            if (dragPoints.Count < 2)
+            if (dragPoints.Count < 2 || _currentPuzzle == null)
             {
                 return;
             }

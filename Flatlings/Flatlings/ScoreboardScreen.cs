@@ -99,13 +99,9 @@ namespace Flatlings
             layoutRoot.AddToGrid(_buttonsStackPanel, 3, 0);
 
             _startButton = CreateButton("play again", DoStartGame);
-
             _cancelButton = CreateButton("abandon", DoCancel);
 
-            if (multiplayerGame.Role == GameRole.Initiator)
-            {
-                _buttonsStackPanel.Children.Add(_startButton);
-            }
+            _buttonsStackPanel.Children.Add(_startButton);
             _buttonsStackPanel.Children.Add(_cancelButton);
 
             RootElement.Content = layoutRoot;
@@ -128,20 +124,6 @@ namespace Flatlings
             stackPanel.Children.Add(scoreTextBlock);
 
             return stackPanel;
-        }
-
-        private void ShowLetsPlayButton()
-        {
-            _startButton.MinWidth = 0;
-            _startButton.MaxWidth = double.MaxValue;
-            _startButton.Width = double.NaN;
-        }
-
-        private void HideLetsPlayButton()
-        {
-            _startButton.MinWidth = 0;
-            _startButton.MaxWidth = 0;
-            _startButton.Width = 0;
         }
 
         protected override void OnHidden()

@@ -133,19 +133,33 @@ namespace Flatlings
             RefreshGamesList();
         }
 
+        protected override void OnHidden()
+        {
+            base.OnHidden();
+        }
+
         private void RefreshGamesList()
         {
-            var gameManager = GetService<MultiplayerGameManager>();
-
-            gameManager.ListAvailableGames().Subscribe(HandleGamesListAvailable);
+            MultiplayerGameManager.ListAvailableGames()
+                .ObserveOn(DispatcherScheduler.Current)
+                .Subscribe(HandleGamesListAvailable);
         }
 
         private void HandleGamesListAvailable(List<GameDto> gamesResources)
         {
+            var gameId = _selectedViewModel == null ? default(string) : _selectedViewModel.GameId;
+
             var viewModels = PrepareGameViewModelsCollection(gamesResources);
             _gamesListView.ItemsSource = viewModels;
 
-            _selectedViewModel = null;
+            if (gameId != null)
+            {
+                var viewModelToReselect = viewModels.FirstOrDefault(vm => vm.GameId == gameId);
+                if (viewModelToReselect != null)
+                {
+                    viewModelToReselect.IsSelected = true;
+                }
+            }
         }
 
         private IElement CreateListBoxItem(GameViewModel content)

@@ -112,6 +112,7 @@
     </Compile>
     <Compile Include="Domain\Extensions.cs" />
     <Compile Include="Domain\Game.cs" />
+    <Compile Include="Domain\GameAbandonedState.cs" />
     <Compile Include="Domain\GameManager.cs" />
     <Compile Include="Domain\GameState.cs" />
     <Compile Include="Domain\LevelDataRepository.cs" />

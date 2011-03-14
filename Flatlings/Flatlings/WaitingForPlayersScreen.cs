@@ -113,7 +113,6 @@ namespace Flatlings
 
             _buttonsStackPanel.Children.Add(_startButton);
             _buttonsStackPanel.Children.Add(_cancelButton);
-            HideLetsPlayButton();
 
             RootElement.Content = layoutRoot;
 
@@ -157,11 +156,6 @@ namespace Flatlings
             if (!Enabled || game == null)
             {
                 return;
-            }
-
-            if (game.Role == GameRole.Initiator)
-            {
-                ShowLetsPlayButton();
             }
 
             _playerListView.ItemsSource = game.Players;

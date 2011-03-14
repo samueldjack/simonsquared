@@ -45,6 +45,7 @@ namespace FlatlingsServer.Resources
         {
             var game = _gameManager.FindGame(new Guid(gameId));
 
+            response.Headers.CacheControl = new CacheControlHeaderValue() { NoCache = true };
             if (game == null)
             {
                 response.StatusCode = HttpStatusCode.NotFound;
@@ -105,8 +106,10 @@ namespace FlatlingsServer.Resources
         }
 
         [WebGet(UriTemplate = "/")]
-        public IList<GameDto> GetAll()
+        public IList<GameDto> GetAll(HttpResponseMessage response)
         {
+            response.Headers.CacheControl = new CacheControlHeaderValue() { NoCache = true };
+
             var resources = _gameManager.GetAll().Where(game => game.IsJoinable).Select(ConvertGameToGameResource).ToList();
 
             return resources;
@@ -134,7 +137,7 @@ namespace FlatlingsServer.Resources
                 response.ReasonPhrase = "No game exists with Guid " + gameId;
             }
 
-            return game.Players.Select(ConvertPlayerToPlayerDto).ToList();
+            return game.GetPlayersSnapshot().Select(ConvertPlayerToPlayerDto).ToList();
         }
 
         [WebGet(UriTemplate = "/{gameId}/Score")]

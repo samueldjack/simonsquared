@@ -23,6 +23,7 @@ namespace FlatlingsServer.Domain
 {
     public class RoundEndedState : GameState
     {
+        private int _startNextRoundCount;
         public RoundEndedState(Game game) : base(game)
         {
         }
@@ -31,7 +32,12 @@ namespace FlatlingsServer.Domain
         {
             if (update is BeginGameUpdate)
             {
-                Game.TransitionToState(typeof(BeginningRoundState));
+                _startNextRoundCount++;
+            }
+
+            if (_startNextRoundCount >= 1)
+            {
+                Game.TransitionToState(typeof (BeginningRoundState));
             }
         }
     }

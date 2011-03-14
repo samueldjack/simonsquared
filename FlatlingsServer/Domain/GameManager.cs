@@ -30,6 +30,25 @@ namespace FlatlingsServer.Domain
         public GameManager(Func<Game> gameFactory)
         {
             _gameFactory = gameFactory;
+            BeginGarbageCollector();
+        }
+
+        private void BeginGarbageCollector()
+        {
+            Observable.Interval(TimeSpan.FromMinutes(1))
+                .Subscribe(_ => RemoveGarbageGames());
+        }
+
+        private void RemoveGarbageGames()
+        {
+            foreach (var game in _games.Values)
+            {
+                if (game.IsInactive)
+                {
+                    Game removedGame;
+                    _games.TryRemove(game.Id, out removedGame);
+                }
+            }
         }
 
         public Game AddGame(string gameName, Player owner)

@@ -26,6 +26,8 @@ namespace FlatlingsServer.Domain
         {
         }
 
+        private int _startCount;
+
         public override void Enter()
         {
             Game.IsJoinable = true;
@@ -36,8 +38,13 @@ namespace FlatlingsServer.Domain
         {
             if (update is BeginGameUpdate)
             {
+                _startCount++;
+            }
+
+            if (Game.Players.Count >= 1 && _startCount >= 1)
+            {
                 Game.IsJoinable = false;
-                Game.TransitionToState(typeof(BeginningRoundState));
+                Game.TransitionToState(typeof (BeginningRoundState));
             }
         }
     }

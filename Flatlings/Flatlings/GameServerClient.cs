@@ -31,7 +31,7 @@ namespace Flatlings
     {
         private RestClient _restClient;
         private Type[] _knownTypes;
-        private const string ServerUrl = "http://localhost:56719/";
+        private const string ServerUrl = "http://dell-i7860-1:8888/SimonSquared";
 
         public GameServerClient()
         {

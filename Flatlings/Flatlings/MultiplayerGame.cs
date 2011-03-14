@@ -81,6 +81,7 @@ namespace Flatlings
             var gameStatusStream = (from interval in Observable.Interval(TimeSpan.FromSeconds(1))
                                     from gameStatus in GameServerClient.GetGameStatus(_gameId)
                                     select gameStatus)
+                                    .Where(status => status != null)
                                     .DistinctUntilChanged(status => status.Id)
                                     .Publish();
 
@@ -99,11 +100,6 @@ namespace Flatlings
 
         public void StartGame()
         {
-            if (_role != GameRole.Initiator)
-            {
-                throw new InvalidOperationException("Only the Game Initaor can start the game");
-            }
-
             _gameServerClient.PostStatusUpdate(_gameId, new BeginGameUpdate());
         }
 

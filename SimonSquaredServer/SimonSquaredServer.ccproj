@@ -11,6 +11,7 @@
     <AssemblyName>SimonSquaredServer</AssemblyName>
     <StartDevelopmentStorage>True</StartDevelopmentStorage>
     <Name>SimonSquaredServer</Name>
+    <FullDeploy>true</FullDeploy>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

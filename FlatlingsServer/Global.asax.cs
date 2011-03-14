@@ -87,13 +87,15 @@ namespace FlatlingsServer
                 .Include<BeginningRoundState, RoundStartingStateDto>()
                 .Include<SolvingPuzzleState, SolvingPuzzleStateDto>()
                 .Include<BeginningPuzzleState, BeginningPuzzleStateDto>()
-                .Include<RoundEndedState, RoundCompletedStateDto>();
+                .Include<RoundEndedState, RoundCompletedStateDto>()
+                .Include<GameAbandonedState, GameAbandonedStateDto>();
  
             Mapper.CreateMap<WaitingForPlayersState, WaitingForPlayersStateDto>();
             Mapper.CreateMap<BeginningRoundState, RoundStartingStateDto>();
             Mapper.CreateMap<BeginningPuzzleState, BeginningPuzzleStateDto>();
             Mapper.CreateMap<SolvingPuzzleState, SolvingPuzzleStateDto>();
             Mapper.CreateMap<RoundEndedState, RoundCompletedStateDto>();
+            Mapper.CreateMap<GameAbandonedState, GameAbandonedStateDto>();
 
             Mapper.CreateMap<Scoreboard, ScoreboardDto>();
             Mapper.CreateMap<PlayerScore, ScoreDto>();

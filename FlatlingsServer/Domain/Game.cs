@@ -34,10 +34,42 @@ namespace FlatlingsServer.Domain
         Dictionary<string, Player> _players = new Dictionary<string, Player>();
         ReaderWriterLockSlim _stateLock = new ReaderWriterLockSlim();
 
+        private DateTime _lastActivity;
+
         public Game(IComponentContext componentContext)
         {
             _componentContext = componentContext;
             TransitionToState(typeof(WaitingForPlayersState));
+        }
+
+        public bool IsInactive
+        {
+            get
+            {
+                _stateLock.EnterReadLock();
+        
+                try
+                {
+                    return (DateTime.UtcNow - _lastActivity).TotalMinutes > InactivityTime;
+                }
+                finally
+                {
+                    _stateLock.ExitReadLock();
+                }
+            }
+        }
+
+        private void MarkAsActive()
+        {
+           _stateLock.EnterWriteLock();
+           try
+           {
+               _lastActivity = DateTime.UtcNow;
+           }
+            finally
+           {
+               _stateLock.ExitWriteLock();
+           }
         }
 
         public void ProcessUpdate(GameStatusUpdate update)
@@ -52,6 +84,8 @@ namespace FlatlingsServer.Domain
             {
                 _stateLock.ExitWriteLock();
             }
+
+            MarkAsActive();
         }
 
         internal void TransitionToState(Type stateType)
@@ -112,19 +146,8 @@ namespace FlatlingsServer.Domain
             {
                 _stateLock.ExitReadLock();
             }
-        }
 
-        public Round GetRoundDate()
-        {
-            _stateLock.EnterReadLock();
-            try
-            {
-                return _round;
-            }
-            finally
-            {
-                _stateLock.ExitReadLock();
-            }
+            MarkAsActive();
         }
 
         public ScoreboardDto GetScoreSnapshot()
@@ -138,7 +161,8 @@ namespace FlatlingsServer.Domain
             finally
             {
                 _stateLock.ExitReadLock();
-            } 
+            }
+            MarkAsActive();
         }
 
         public void AddPlayer(Player player)
@@ -146,6 +170,7 @@ namespace FlatlingsServer.Domain
             _stateLock.EnterWriteLock();
             try
             {
+
                 _players.Add(player.Id.ToString(), player); 
                 Scoreboard.AddPlayer(player);
             }
@@ -153,27 +178,34 @@ namespace FlatlingsServer.Domain
             {
                 _stateLock.ExitWriteLock();
             }
+            MarkAsActive();
         }
 
         public ICollection<Player> Players
         {
-            get
+            get { return _players.Values.ToList(); }
+        }
+
+        public ICollection<Player> GetPlayersSnapshot()
+        {
+            _stateLock.EnterReadLock();
+            try
             {
-                _stateLock.EnterReadLock();
-                try
-                {
-                    return _players.Values.ToList();
-                }
-                finally
-                {
-                    _stateLock.ExitReadLock();
-                } 
+                return _players.Values.ToList();
             }
+            finally
+            {
+                _stateLock.ExitReadLock();
+            }
+            MarkAsActive();
         }
 
         public bool IsJoinable { get; internal set; }
 
         private Round _round;
+        private string _ownerId;
+        private static readonly int InactivityTime = 1;
+
         internal Round Round
         {
             get { return _round; }
@@ -183,6 +215,7 @@ namespace FlatlingsServer.Domain
         public void SetOwner(Player owner)
         {
             AddPlayer(owner);
+            _ownerId = owner.Id.ToString();
         }
 
         internal int CurrentPuzzle { get; set; }
@@ -199,11 +232,18 @@ namespace FlatlingsServer.Domain
             {
                 _players.Remove(playerId);
                 Scoreboard.RemovePlayer(playerId);
+
+                if (_players.Count == 0)
+                {
+                    TransitionToStateCore(typeof(GameAbandonedState));
+                }
             }
             finally
             {
                 _stateLock.ExitWriteLock();
             }
+
+            MarkAsActive();
         }
     }
 }

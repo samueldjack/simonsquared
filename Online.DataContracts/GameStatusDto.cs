@@ -26,6 +26,7 @@ namespace SimonSquared.Online.DataContracts
     [KnownType(typeof(BeginningPuzzleStateDto))]
     [KnownType(typeof(SolvingPuzzleStateDto))]
     [KnownType(typeof(RoundCompletedStateDto))]
+    [KnownType(typeof(GameAbandonedStateDto))]
     [DataContract(Namespace = "")]
     public class GameStatusDto
     {

@@ -53,6 +53,9 @@
     <Compile Include="..\Online.DataContracts\Deformation.cs">
       <Link>Deformation.cs</Link>
     </Compile>
+    <Compile Include="..\Online.DataContracts\GameAbandonedStateDto.cs">
+      <Link>GameAbandonedStateDto.cs</Link>
+    </Compile>
     <Compile Include="..\Online.DataContracts\GameDto.cs">
       <Link>GameDto.cs</Link>
     </Compile>

@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="BeginningPuzzleStateDto.cs" />
     <Compile Include="Deformation.cs" />
+    <Compile Include="GameAbandonedStateDto.cs" />
     <Compile Include="GameDto.cs" />
     <Compile Include="GameStatusDto.cs" />
     <Compile Include="GameStatusUpdate.cs" />
