@@ -31,7 +31,7 @@ namespace Flatlings
     {
         private RestClient _restClient;
         private Type[] _knownTypes;
-        private const string ServerUrl = "http://localhost/SimonSquared";
+        private const string ServerUrl = "http://localhost:56719/";
 
         public GameServerClient()
         {
@@ -134,6 +134,15 @@ namespace Flatlings
             var request = new RestRequest("Games/{gameId}/Players", Method.POST);
             request.AddUrlSegment("gameId", gameId);
             request.AddBody(player, _knownTypes);
+
+            return ExecuteRequest(request);
+        }
+
+        public IObservable<Unit> LeaveGame(string gameId, string playerId)
+        {
+            var request = new RestRequest("Games/{gameId}/Players/{playerId}", Method.DELETE);
+            request.AddUrlSegment("gameId", gameId);
+            request.AddUrlSegment("playerId", playerId);
 
             return ExecuteRequest(request);
         }

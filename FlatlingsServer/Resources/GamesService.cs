@@ -168,6 +168,20 @@ namespace FlatlingsServer.Resources
             game.AddPlayer(player);
         }
 
+        [WebInvoke(UriTemplate = "/{gameId}/Players/{playerId}", Method = "DELETE")]
+        public void RemovePlayer(string gameId, string playerId, HttpResponseMessage response)
+        {
+            var game = _gameManager.FindGame(new Guid(gameId));
+
+            if (game == null)
+            {
+                response.StatusCode = HttpStatusCode.NotFound;
+                response.ReasonPhrase = "No game exists with Guid " + gameId;
+            }
+
+            game.RemovePlayer(playerId);
+        }
+
         private GameDto ConvertGameToGameResource(Game game)
         {
             var uri = "Games/" + game.Id;

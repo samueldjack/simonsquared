@@ -31,7 +31,7 @@ namespace FlatlingsServer.Domain
         private readonly IComponentContext _componentContext;
         private Scoreboard _scoreboard = new Scoreboard();
 
-        Dictionary<Guid, Player> _players = new Dictionary<Guid, Player>();
+        Dictionary<string, Player> _players = new Dictionary<string, Player>();
         ReaderWriterLockSlim _stateLock = new ReaderWriterLockSlim();
 
         public Game(IComponentContext componentContext)
@@ -146,7 +146,7 @@ namespace FlatlingsServer.Domain
             _stateLock.EnterWriteLock();
             try
             {
-                _players.Add(player.Id, player); 
+                _players.Add(player.Id.ToString(), player); 
                 Scoreboard.AddPlayer(player);
             }
             finally
@@ -190,6 +190,20 @@ namespace FlatlingsServer.Domain
         internal Scoreboard Scoreboard
         {
             get { return _scoreboard; }
+        }
+
+        public void RemovePlayer(string playerId)
+        {
+            _stateLock.EnterWriteLock();
+            try
+            {
+                _players.Remove(playerId);
+                Scoreboard.RemovePlayer(playerId);
+            }
+            finally
+            {
+                _stateLock.ExitWriteLock();
+            }
         }
     }
 }

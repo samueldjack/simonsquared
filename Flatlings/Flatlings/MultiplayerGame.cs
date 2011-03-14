@@ -109,6 +109,8 @@ namespace Flatlings
 
         public void LeaveGame()
         {
+            _gameServerClient.LeaveGame(_gameId, _player.Id);
+
             if (_statusSubscription != null)
             {
                 _statusSubscription.Dispose();

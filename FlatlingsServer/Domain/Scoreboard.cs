@@ -53,5 +53,13 @@ namespace FlatlingsServer.Domain
         }
 
         public string MostRecentWinnerId { get; private set; }
+
+        public void RemovePlayer(string playerId)
+        {
+            if (_scores.ContainsKey(playerId))
+            {
+                _scores.Remove(playerId);
+            }
+        }
     }
 }

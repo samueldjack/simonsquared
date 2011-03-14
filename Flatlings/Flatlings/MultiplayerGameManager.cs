@@ -17,15 +17,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.Phone.Reactive;
 using SimonSquared.Online.DataContracts;
+using Microsoft.Phone.Reactive;
 
 namespace Flatlings
 {
     public class MultiplayerGameManager
     {
         private GameServerClient _client;
-        private BehaviorSubject<MultiplayerGame> _multiplayerGameProperty = new BehaviorSubject<MultiplayerGame>(null);
+        private Microsoft.Phone.Reactive.BehaviorSubject<MultiplayerGame> _multiplayerGameProperty = new Microsoft.Phone.Reactive.BehaviorSubject<MultiplayerGame>(null);
         private PlayerDto _currentPlayer;
 
         public MultiplayerGameManager()
